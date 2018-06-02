@@ -42,11 +42,19 @@ $key = $e-> makeKey ($userKey, $serverKey, $userSuppliedKey);
 $encryptedData = $e->encrypt($data, $key);
 
 
+// Now reset and modify a key to be wrong
+$userKey = "userKey";
+$serverKey = "serverKey";
+$userSuppliedKey = "userSuppliedKe";
+ 
+$key = $e-> makeKey ($userKey, $serverKey, $userSuppliedKey);
 
 //Decrypt
 $e2 = new Encryption(MCRYPT_BLOWFISH, MCRYPT_MODE_CBC);
-$data = $e2->decrypt($encryptedData, $key);
+$decryptdata = $e2->decrypt($encryptedData, $key);
 
-print $data;
+// $decryptdata will equal 0 on decrypt failure
+
+print $decryptdata;
 
 ?>
